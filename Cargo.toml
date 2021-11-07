@@ -1,0 +1,29 @@
+[package]
+name = "bevy_stimulus"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bevy = "0.5.0"
+serde = { version = "1.0", features = ["derive"], optional = true }
+bevy_stimulus_derive = { path = "bevy_stimulus_derive" }
+
+[features]
+default = ["serialize"]
+serialize = ["serde", "bevy/serialize"]
+
+[dev-dependencies]
+toml = "0.5.8"
+serde_json = "1.0.69"
+
+[[example]]
+name = "deserialize"
+path = "examples/deserialize.rs"
+
+[[example]]
+name = "serialize"
+path = "examples/serialize.rs"
+
+[[example]]
+name = "simple"
+path = "examples/simple.rs"

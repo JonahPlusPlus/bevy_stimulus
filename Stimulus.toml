@@ -1,0 +1,71 @@
+
+# Default Profile for Mouse and Keyboard
+# The default profile
+[[profile]]
+name = "default"
+
+[[profile.action]]
+event = "forward"
+axis = [ "s", "w" ] # You can create an axis from two buttons/keys
+
+[[profile.action]]
+event = "left"
+axis = [ "a", "d" ]
+
+[[profile.action]]
+event = "shoot"
+input = "mouse-left" # Inputs are buttons/keys that can be triggered
+
+[[profile.action]]
+event = "ability"
+input = "e"
+
+# Profile for Gamepad
+[[profile]]
+name = "gamepad"
+
+[[profile.action]]
+event = "forward"
+axis = "left-stick-y" # Using a string refers to an already predefined axis
+
+[[profile.action]]
+event = "left"
+axis = "left-stick-x" # We use kebab-case to represent the values
+
+[[profile.action]]
+event = "shoot"
+input = "right-trigger"
+
+[[profile.action]]
+event = "ability"
+input = "north" # Bevy's platform agnostic name for y or triangle button
+
+# Profile for Touch
+[[profile]]
+name = "touch"
+
+[[profile.action]]
+event = "forward"
+axis = { touch = "moved", direction = [0.0, 1.0], bbox = { x = 0.1, y = 0.7, w = 0.2, h = 0.2 } } # For axis touch events, you can define areas to activate (percentage based) and a direction to increase/decrease the value
+
+[[profile.action]]
+event = "forward"
+axis = { touch = "moved", direction = [1.0, 0.0], bbox = { x = 0.1, y = 0.7, w = 0.2, h = 0.2 } } # By overlapping two axis touch boxs, we get a touch "joystick"
+
+[[profile.action]]
+event = "shoot"
+input = { touch = "ended", bbox = { x = 0.8, y = 0.8, w = 0.1, h = 0.1 } }
+
+[[profile.action]]
+event = "ability"
+input = { touch = "ended" } # BBOXs are optional; place in config decides priority, so put touch events without one at the end
+
+# Extra details
+[[profile.example]]
+event = "ability"
+input = { mouse = 2, bbox = { x = 0.8, y = 0.6, w = 0.1, h = 0.1 } } # Format for MouseButton::Other(u16) and how we can also use bbox for mouse actions
+
+# Anti-Examples
+# [[profile.error]]
+# event = "forward"
+# input = "a" // Mixing types doesn't work: axis can't be overridden by input
